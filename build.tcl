@@ -55,6 +55,7 @@ if {$dev eq "nano20k"} {
     add_file -type verilog "src/pll/pll_12.v"
     add_file -type verilog "src/usb_hid_host.v"
     add_file -type cst "src/boards/console.cst"
+
 } else {
     error "Unknown device $dev"
 }
@@ -78,6 +79,10 @@ add_file -type verilog "src/iosys/iosys_bl616.v"
 add_file -type verilog "src/iosys/textdisp.v"
 add_file -type verilog "src/iosys/uart_fixed.v"
 add_file -type verilog "src/monitor2hdmi.v"
+add_file -type verilog "src/monitor2screen.v"
+add_file -type verilog "src/pll/pll_33.v"
+add_file -type verilog "src/pll/pll_33_mod.v"
+add_file -type verilog "src/pll_init.v"
 add_file -type verilog "src/monitor_top.v"
 add_file -type gao -disable "src/monitor_console60k.rao"
 set_option -synthesis_tool gowinsynthesis
