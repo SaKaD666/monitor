@@ -83,13 +83,13 @@ cd "$(dirname "$0")"
 #  exit 1
 #fi
 
-#echo
-#echo "============ Building console60k with ds2 controller ==============="
-#echo
-#"$GWSH" build.tcl console60k ds2
-#if [ $? -ne 0 ]; then
-#  exit 1
-#fi
+echo
+echo "============ Building console60k with ds2 controller ==============="
+echo
+"$GWSH" build.tcl console60k ds2
+if [ $? -ne 0 ]; then
+  exit 1
+fi
 
 echo
 echo "============ Building console138k with ds2 controller ==============="

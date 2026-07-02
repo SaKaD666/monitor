@@ -42,17 +42,24 @@ if {$dev eq "nano20k"} {
 } elseif {$dev eq "console60k"} {
     set_device GW5AT-LV60PG484AC1/I0 -device_version B
     add_file -type verilog "src/boards/console60k.v"
+    add_file -type verilog "src/plla/pll_init.v"
     add_file -type verilog "src/plla/pll_27.v"
     add_file -type verilog "src/plla/pll_74.v"
     add_file -type verilog "src/plla/pll_12.v"
+    add_file -type verilog "src/plla/pll_33.v"
+    add_file -type verilog "src/plla/pll_33_mod.v"
     add_file -type verilog "src/usb_hid_host.v"
     add_file -type cst "src/boards/console.cst"
+    set_option -use_i2c_as_gpio 1
 } elseif {$dev eq "console138k"} {
     set_device GW5AST-LV138PG484AC1/I0 -device_version B
     add_file -type verilog "src/boards/console138k.v"
+    add_file -type verilog "src/pll/pll_init.v"
     add_file -type verilog "src/pll/pll_27.v"
     add_file -type verilog "src/pll/pll_74.v"
     add_file -type verilog "src/pll/pll_12.v"
+    add_file -type verilog "src/pll/pll_33.v"
+    add_file -type verilog "src/pll/pll_33_mod.v"
     add_file -type verilog "src/usb_hid_host.v"
     add_file -type cst "src/boards/console.cst"
 
@@ -80,9 +87,6 @@ add_file -type verilog "src/iosys/textdisp.v"
 add_file -type verilog "src/iosys/uart_fixed.v"
 add_file -type verilog "src/monitor2hdmi.v"
 add_file -type verilog "src/monitor2screen.v"
-add_file -type verilog "src/pll/pll_33.v"
-add_file -type verilog "src/pll/pll_33_mod.v"
-add_file -type verilog "src/pll_init.v"
 add_file -type verilog "src/monitor_top.v"
 add_file -type gao -disable "src/monitor_console60k.rao"
 set_option -synthesis_tool gowinsynthesis

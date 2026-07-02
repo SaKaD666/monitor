@@ -1,5 +1,6 @@
 
 `define CONSOLE
+`define CONSOLE60K
 `define CONTROLLER_DS2
 
 `define USB1

@@ -121,12 +121,21 @@ pll_74 pll_74 (
     .clkin(clk27),              // 27 Mhz input
     .clkout0(hclk), .clkout1(hclk5)
 );
+`ifdef CONSOLE60K
+pll_33 pll_33_inst (
+    .clkin(sys_clk),
+    .mdclk(sys_clk),
+    .clkout0(clk33),
+    .lock(pll_33_lock)
+);
+`else
 pll_33 pll_33_inst (
     .clkin(sys_clk),
     .init_clk(sys_clk),
     .clkout0(clk33),
     .lock(pll_33_lock)
 );
+`endif
 `endif
 
 reg [15:0] resetcnt = 16'hffff;
