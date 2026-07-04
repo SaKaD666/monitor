@@ -195,6 +195,9 @@ wire USE_SCREEN = !hdmi_hpd;
 wire [7:0] overlay_x = USE_SCREEN ? overlay_x_screen : overlay_x_hdmi;
 wire [7:0] overlay_y = USE_SCREEN ? overlay_y_screen : overlay_y_hdmi;
 
+// Clock MUX for the OS generator
+wire active_pixel_clk = USE_SCREEN ? clk33 : hclk;
+
 
 // --- 1. HDMI Engine (74.25 MHz) ---
 monitor2hdmi s2h(
@@ -212,9 +215,7 @@ monitor2hdmi s2h(
 
 
 // --- 2. LCD Engine (33.333 MHz) ---
-monitor2screen #(
-    .LATENCY(2) 
-) s2s (
+monitor2screen s2s (
     .resetn(screen_resetn), // Protected by PLL lock
     .overlay(USE_SCREEN ? overlay : 1'b0),              // Off when HDMI is active
     .overlay_x(overlay_x_screen), 
@@ -230,7 +231,7 @@ monitor2screen #(
 // --- 3. Menu Generator ---
 iosys_bl616 #(.CORE_ID(0), .FREQ(FREQ), .COLOR_LOGO(15'b11011_10010_00011)) sys (
     .clk(clk), 
-    .hclk(hclk),
+    .hclk(active_pixel_clk),
     .resetn(resetn),
     
     .overlay(overlay), 
